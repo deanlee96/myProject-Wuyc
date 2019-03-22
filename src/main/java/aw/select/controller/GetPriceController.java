@@ -32,7 +32,7 @@ public class GetPriceController {
 	 * 折扣商品：localhost:8080/scan/042283641921/50
 	 * 不定重肉类商品(正常)：localhost:8080/scan/2811500002009/50
 	 * 不定重肉类商品(折扣)：localhost:8080/scan/2811600005009/50
-	 * 
+	 * test
 	 * 
 	 */
 	 @GetMapping("/scan/{barcode}/{sktype}")
