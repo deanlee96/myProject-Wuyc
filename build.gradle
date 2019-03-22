@@ -1,0 +1,69 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: "jacoco"
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
+applicationDefaultJvmArgs = [ "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005" ]
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0'
+}
+
+
+configurations {
+    apiTestCompile.extendsFrom testCompile
+    apiTestRuntime.extendsFrom testRuntime
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-data-jpa',
+    		'org.springframework.boot:spring-boot-starter',
+    		'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'net.sf.json-lib:json-lib:2.4:jdk15'
+    )
+    compile('io.springfox:springfox-swagger-ui:2.8.0')
+    compile('io.springfox:springfox-swagger2:2.8.0')
+    compile('io.swagger:swagger-jersey2-jaxrs:1.5.20')
+    compile('com.mangofactory:swagger-springmvc:1.0.2')
+    compile('com.mangofactory:swagger-models:1.0.2')
+    compile('com.wordnik:swagger-annotations:1.5.3-M1')    
+	compile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: '4.0'
+	
+    runtime("mysql:mysql-connector-java")
+  //  runtime("org.apache.tomcat.embed:tomcat-embed-jasper")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+
+idea {
+    module {
+        testSourceDirs += file('src/apiTest/java')
+        testSourceDirs += file('src/apiTest/resources')
+        scopes.TEST.plus += [configurations.apiTestCompile]
+        scopes.TEST.plus += [configurations.apiTestRuntime]
+    }
+}
+
+
+

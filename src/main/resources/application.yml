@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    name: spin_ds_sqlserver_ds
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #url: jdbc:sqlserver://10.3.16.227:1433;DatabaseName=spin
+    #username: sa
+    #password: Wincor2018
+    url: jdbc:sqlserver://10.1.7.64:1433;DatabaseName=TPCentralDB
+    username: sa
+    password: 'P@sswordSQL12#'
+#  jpa:
+#    database: sql-server
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.SQLServer2008Dialect
